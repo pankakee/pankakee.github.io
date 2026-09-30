@@ -1,46 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Kevin Li | Financial Analysis & Risk Management Portfolio</title>
+    <!-- Google Fonts: Inter and JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; }
-        .project-card { border: 1px solid #ddd; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; }
-        .project-card h2 { margin-top: 0; }
-        a { color: #0366d6; text-decoration: none; font-weight: bold;}
-        a:hover { text-decoration: underline; }
+        /* Smooth transitions for theme switching and interactive hover cards */
+        * {
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+        }
     </style>
 </head>
-<body>
 
-    <h1>Welcome to My Portfolio</h1>
-    <p>Hi, I'm Kevin Li. I am a Financial Analysis and Risk Management Major with a Minor in Computer Science at the University of Waterloo. Check out some of my projects below.</p>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen antialiased flex flex-col selection:bg-sky-500 selection:text-white">
 
-    <div class="project-card">
-        <h2>Black-Litterman Portfolio Optimizer & Risk Engine</h2>
-        <p>A quantitative asset allocation and risk modeling framework implementing the Black-Litterman model to blend market equilibrium returns with investor views, integrated with comprehensive portfolio risk metrics.</p>
-        <a href="https://github.com/pankakee/Black-Litterman-Portfolio-Optimizer-Risk-Engine" target="_blank">View the Code & README &rarr;</a>
-    </div>
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-50/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="font-bold text-lg tracking-tight hover:text-sky-600 dark:hover:text-sky-400 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+                Kevin Li
+            </a>
 
-    <div class="project-card">
-        <h2>Canadian RRSP tax-deduction optimizer</h2>
-        <p>VBA financial modeling tool utilizing a heuristic hill-climbing algorithm to automate multi-variable tax optimization.</p>
-        <a href="https://github.com/pankakee/RRSP-Deduction-Model" target="_blank">View the Code & README &rarr;</a>
-    </div>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/pankakee" target="_blank" rel="noopener noreferrer" 
+                   class="text-xs font-mono font-medium px-3 py-1.5 rounded-md border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
+                    GitHub
+                </a>
 
-    <div class="project-card">
-        <h2>Watopoly</h2>
-        <p>Watopoly is a C++ implementation of a property trading board game developed as a W25 CS246 final project. It features game mechanics for
-            buying, selling, and trading properties with dynamic player interactions.</p>
-        <a href="https://github.com/pankakee/Watopoly" target="_blank">View the Live Demo &rarr;</a>
-    </div>
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" type="button" aria-label="Toggle Dark Mode"
+                        class="p-2 rounded-md text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition">
+                    <!-- Sun Icon -->
+                    <svg id="sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" stroke-width="2"></circle>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <div class="project-card">
-        <h2>Graph Theory: Non-Planar Structures</h2>
-        <p>A script mapping out cut vertices and t-colourings for complex non-planar graphs.</p>
-        <a href="https://github.com/your-username/graph-theory-tools" target="_blank">View the Source Code &rarr;</a>
-    </div>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full">
+        <section class="mb-14">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-sky-100/80 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300 border border-sky-200 dark:border-sky-800 mb-5">
+                <svg class="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                </svg>
+                University of Waterloo
+            </div>
 
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+                Kevin Li
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                Financial Analysis &amp; Risk Management major with a minor in Computer Science. Focused on quantitative portfolio management, algorithmic optimization, and financial software engineering.
+            </p>
+        </section>
+
+        <section>
+            <div class="flex items-center justify-between mb-8 pb-3 border-b border-slate-200 dark:border-slate-800">
+                <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="text-sky-600 dark:text-sky-400 font-mono text-sm">01.</span> Featured Projects
+                </h2>
+                <span class="text-xs font-mono text-slate-400">3 repositories</span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+
+                <!-- Project 1: Black-Litterman Portfolio Optimizer -->
+                <article class="group relative rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/60 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-sky-500/50 dark:hover:border-sky-500/40 transition-all duration-200">
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
+                        <h3 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                            Black-Litterman Portfolio Optimizer &amp; Risk Engine
+                        </h3>
+                        <a href="https://github.com/pankakee/Black-Litterman-Portfolio-Optimizer-Risk-Engine" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-sky-50 dark:bg-slate-800 dark:hover:bg-sky-950 text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 border border-slate-200 dark:border-slate-700/80 transition-colors self-start sm:self-auto shrink-0">
+                            <span>Repository</span>
+                            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+                        Quantitative asset allocation and risk modeling framework implementing the Black-Litterman model to blend market equilibrium returns with subjective investor views, integrated with factor decomposition and portfolio risk metrics.
+                    </p>
+
+                    <!-- Tech Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/60 font-mono text-xs">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">NumPy / Pandas</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Quantitative Finance</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Optimization</span>
+                    </div>
+                </article>
+
+                <!-- Project 2: Watopoly -->
+                <article class="group relative rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/60 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-sky-500/50 dark:hover:border-sky-500/40 transition-all duration-200">
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
+                        <h3 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                            Watopoly
+                        </h3>
+                        <a href="https://github.com/pankakee/Watopoly" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-sky-50 dark:bg-slate-800 dark:hover:bg-sky-950 text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 border border-slate-200 dark:border-slate-700/80 transition-colors self-start sm:self-auto shrink-0">
+                            <span>Repository</span>
+                            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+                        A full C++ implementation of a property trading board game developed for CS 246 (Object-Oriented Software Development). Features robust mechanics for property auctions, dynamic rent calculations, bankruptcies, and modular game architectures.
+                    </p>
+
+                    <!-- Tech Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/60 font-mono text-xs">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">C++20</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">OOP</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Design Patterns</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Observer / Factory</span>
+                    </div>
+                </article>
+
+                <!-- Project 3: Canadian RRSP tax-deduction optimizer -->
+                <article class="group relative rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/60 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-sky-500/50 dark:hover:border-sky-500/40 transition-all duration-200">
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
+                        <h3 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                            Canadian RRSP Tax-Deduction Optimizer
+                        </h3>
+                        <a href="https://github.com/pankakee/RRSP-Deduction-Model" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-sky-50 dark:bg-slate-800 dark:hover:bg-sky-950 text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 border border-slate-200 dark:border-slate-700/80 transition-colors self-start sm:self-auto shrink-0">
+                            <span>Repository</span>
+                            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-5">
+                        A financial modeling tool utilizing a heuristic hill-climbing algorithm to optimize multi-variable Canadian RRSP tax deductions across varying income brackets, maximizing long-term post-tax wealth generation.
+                    </p>
+
+                    <!-- Tech Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/60 font-mono text-xs">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Excel VBA</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Financial Engineering</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Optimization Algorithms</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 mt-12 bg-white/50 dark:bg-slate-900/30">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+            <p>&copy; Kevin Li &bull; University of Waterloo</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/pankakee" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">GitHub: pankakee</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        // Check system preference or localStorage
+        const userTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function updateIcons(isDark) {
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        if (userTheme === 'dark' || (!userTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+            updateIcons(true);
+        } else {
+            document.documentElement.classList.remove('dark');
+            updateIcons(false);
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcons(isDark);
+        });
+    </script>
 </body>
 </html>
